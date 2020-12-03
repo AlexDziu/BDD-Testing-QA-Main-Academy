@@ -8,6 +8,10 @@
   <artifactId>bdd-students-lab</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <properties>
+    <aspectj.version>1.9.6</aspectj.version>
+  </properties>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -16,7 +20,36 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
           <configuration>
-            <includes>*/Runner.java</includes>
+            <testFailureIgnore>true</testFailureIgnore>
+            <includes>
+              <include>*/Runner.java</include>
+            </includes>
+            <argLine>
+              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+            </argLine>
+            <systemProperties>
+              <property>
+                <name>allure.results.directory</name>
+                <value>${project.build.directory}/reports/allure-results</value>
+              </property>
+            </systemProperties>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.aspectj</groupId>
+              <artifactId>aspectjweaver</artifactId>
+              <version>${aspectj.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>io.qameta.allure</groupId>
+          <artifactId>allure-maven</artifactId>
+          <version>2.10.0</version>
+          <configuration>
+            <reportVersion>2.10.0</reportVersion>
+            <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory>
           </configuration>
         </plugin>
 
@@ -34,12 +67,37 @@
     </pluginManagement>
   </build>
 
-
   <dependencies>
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
       <version>6.9.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.30</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber6-jvm</artifactId>
+      <version>2.13.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit4</artifactId>
+      <version>2.13.7</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>

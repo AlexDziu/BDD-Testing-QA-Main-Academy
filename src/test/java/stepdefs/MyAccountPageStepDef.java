@@ -10,6 +10,6 @@ public class MyAccountPageStepDef {
 
     @Then("I see {string} in the left top of the page")
     public void i_see_in_the_left_top_of_the_page(String message) {
-        assertThat(myAccountPage.getTextMyAccount().equals(message));
+        assertThat(myAccountPage.getTextMyAccount()).isEqualTo(message);
     }
 }
