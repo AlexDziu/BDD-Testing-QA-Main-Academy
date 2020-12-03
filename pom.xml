@@ -136,7 +136,6 @@
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-junit</artifactId>
       <version>6.9.0</version>
-      <scope>test</scope>
     </dependency>
 
   </dependencies>

@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import utils.ScreenShotUtils;
 
-//mvn allure::serve
-
 @Slf4j
 @Getter
 public class MainPage extends BasePage {
@@ -15,19 +13,22 @@ public class MainPage extends BasePage {
     public void openMainPage() {
         log.info("Opening main page of the application");
         getDriver().get("https://demo.opencart.com/");
+        ScreenShotUtils.makeScreenshot();
+
     }
 
-    @Step("enter login")
+    @Step("click on login")
     public void enterLoginPage() {
-        openMainPage();
-        log.info("Click on my account drop down");
+        log.info("Click on login");
         getTopBar().clickOnMyAccountDropDown().selectLogin();
         ScreenShotUtils.makeScreenshot();
     }
 
-    @Step("enter register")
+    @Step("click on register")
     public void enterRegisterPage() {
+        log.info("Click on register");
         openMainPage();
         getTopBar().clickOnMyAccountDropDown().selectRegister();
+        ScreenShotUtils.makeScreenshot();
     }
 }

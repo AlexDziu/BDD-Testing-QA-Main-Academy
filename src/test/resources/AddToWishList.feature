@@ -1,9 +1,9 @@
 Feature: Add products to Wish List
 
   Background: User is logged in
-    Given I am on the demo.opencart.com login page
+    Given I am on the demo.opencart.com main page
     When I enter 'sashagood12121986@gmail.com' and '1234' into login
-    Then I see 'My Account' in the left top of the page
+    Then I see 'My Account' on the left top of the page
 
   Scenario: Add monitors to WishList
     Given I click on COMPONENTS in the top menu
