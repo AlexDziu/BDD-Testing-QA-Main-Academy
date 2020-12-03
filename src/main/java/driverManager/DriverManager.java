@@ -7,15 +7,15 @@ import pages.BasePage;
 
 public class DriverManager {
 
-  public static void setUpDriver() {
-    WebDriverManager.chromedriver().setup();
-    WebDriver driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    BasePage.setDriver(driver);
-  }
+    public static void setUpDriver() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        BasePage.setDriver(driver);
+    }
 
-  public static void quiteDriver() {
-    BasePage.getDriver().quit();
-  }
+    public static void quiteDriver() {
+        BasePage.getDriver().quit();
+    }
 
 }

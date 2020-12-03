@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.ProductsPage;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static pages.BasePage.getDriver;
 
 
@@ -38,7 +37,6 @@ public class TopMenu {
     }
 
     public void selectCategoryFromMenuItem(MenuCategories category) {
-//        Actions actions = new Actions(webDriver);
         switch (category) {
             case DESKTOPS:
                 actions.moveToElement(desktopsCategory).build().perform();
@@ -52,7 +50,6 @@ public class TopMenu {
     }
 
     public void selectSubCategory(MenuSubCategories subCategory) {
-//        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
         switch (subCategory) {
             case MONITORS:
                 wait.until(ExpectedConditions.visibilityOf(selectMonitors)).click();
@@ -62,41 +59,5 @@ public class TopMenu {
         }
         new ProductsPage();
     }
-//    private final WebDriver driver;
-//
-//    public TopMenu(WebDriver driver) {
-//        this.driver = driver;
-//    }
-//
-//    private final By selectComponents = By.xpath("//a[text()='Components']");
-//    private final By selectMonitors = By.xpath("//a[contains(text(),'Monitors')]");
-//    private final By desktopsCategoryLink = By.xpath("//a[text()='Desktops']");
-//
-//    public TopMenu selectCategoryFromMenuItem(MenuCategories category) {
-//        Actions actions = new Actions(driver);
-//        switch (category) {
-//            case DESKTOPS:
-//                actions.moveToElement(driver.findElement(desktopsCategoryLink));
-//                break;
-//            case COMPONENTS:
-//                actions.moveToElement(driver.findElement(selectComponents));
-//                break;
-//            default:
-//                throw new IllegalStateException("Unexpected value: " + category);
-//        }
-//        actions.build().perform();
-//        return this;
-//    }
-//
-//    public ProductsPage selectSubCategory(MenuSubCategories subCategory) {
-//        WebDriverWait wait = new WebDriverWait(driver, 3);
-//        switch (subCategory) {
-//            case MONITORS:
-//                wait.until(visibilityOfElementLocated(selectMonitors)).click();
-//                break;
-//            default:
-//                throw new IllegalStateException("Unexpected value: " + subCategory);
-//        }
-//        return new ProductsPage();
-//    }
+
 }
