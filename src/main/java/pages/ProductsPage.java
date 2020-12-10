@@ -14,7 +14,7 @@ public class ProductsPage extends BasePage {
     private final By closeSuccessMessageButton = By.xpath("//button[@class='close']");
 
     public ProductsPage() {
-        this.boxProduct = new ProductBox(driver);
+        this.boxProduct = new ProductBox(getDriver());
     }
 
     public void addToWishListFollowingProducts(String... productNames) {

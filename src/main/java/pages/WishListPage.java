@@ -13,7 +13,7 @@ public class WishListPage extends BasePage {
     private static By myWishListTable = By.xpath("//div[@class='table-responsive']//table//tbody");
 
     public WishListPage() {
-        this.myWishListItems = new MyWishListItems(driver);
+        this.myWishListItems = new MyWishListItems(getDriver());
     }
 
     public List<MyWishListItems> getAllItemsFromWishList() {

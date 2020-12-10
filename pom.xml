@@ -20,6 +20,9 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
           <configuration>
+            <parallel>methods</parallel>
+            <threadCount>4</threadCount>
+            <perCoreThreadCount>false</perCoreThreadCount>
             <testFailureIgnore>true</testFailureIgnore>
             <includes>
               <include>*/Runner.java</include>
@@ -27,7 +30,16 @@
             <argLine>
               -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
             </argLine>
+
             <systemProperties>
+              <property>
+                <name>internetExplorer</name>
+                <value>${browser}</value>
+              </property>
+              <property>
+                <name>isMultiple</name>
+                <value>${isMultiple}</value>
+              </property>
               <property>
                 <name>allure.results.directory</name>
                 <value>${project.build.directory}/reports/allure-results</value>

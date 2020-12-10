@@ -17,22 +17,22 @@ public abstract class BasePage {
     private final TopBar topBar;
 
     public BasePage() {
-        this.topBar = new TopBar(driver);
-        this.topMenu = new TopMenu(driver);
+        this.topBar = new TopBar(getDriver());
+        this.topMenu = new TopMenu(getDriver());
     }
 
-    protected static WebDriver driver;
+    private static final ThreadLocal<WebDriver> DRIVER_THREAD_LOCAL = new ThreadLocal<>();
 
-    public static void setDriver(WebDriver webDriver) {
-        driver = webDriver;
+    public static void setDriverThreadLocal(WebDriver webDriver) {
+        DRIVER_THREAD_LOCAL.set(webDriver);
     }
 
     public static WebDriver getDriver() {
-        return driver;
+        return DRIVER_THREAD_LOCAL.get();
     }
 
     public WebElement waitUntilVisible(WebElement element, int time) {
-        return new WebDriverWait(driver, time)
+        return new WebDriverWait(getDriver(), time)
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -41,21 +41,21 @@ public abstract class BasePage {
     }
 
     public void waitUntilTextWillPresent(By locator, int time, String text) {
-        new WebDriverWait(driver, time)
+        new WebDriverWait(getDriver(), time)
                 .until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
     }
 
     public void waitInvisibilityOf(By locator, int time) {
-        new WebDriverWait(driver, time)
+        new WebDriverWait(getDriver(), time)
                 .until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     public void clickWithJs(WebElement webElement) {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", webElement);
     }
 
     public void moveToElement(WebElement element) {
-        new Actions(driver).moveToElement(element).build().perform();
+        new Actions(getDriver()).moveToElement(element).build().perform();
     }
 }

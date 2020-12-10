@@ -36,7 +36,7 @@ public class ProductBox {
 
     public List<ProductBox> getAllProducts(By locator) {
         List<ProductBox> list = new ArrayList<>();
-        List<WebElement> elements = driver.findElements(locator);
+        List<WebElement> elements = getDriver().findElements(locator);
         for (WebElement element : elements) {
             WebElement image = element.findElement(By.xpath(".//img[@class='img-responsive']"));
             String nameItem = element.findElement(By.xpath(".//div[@class='caption']//h4/a")).getText();
