@@ -14,7 +14,6 @@ public class MainPage extends BasePage {
         log.info("Opening main page of the application");
         getDriver().get("https://demo.opencart.com/");
         ScreenShotUtils.makeScreenshot();
-
     }
 
     @Step("click on login")

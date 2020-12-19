@@ -10,7 +10,7 @@ import pages.BasePage;
 public class DriverManager {
 
     public static void setUpDriver() {
-        String browserFromProperty = System.getProperty("browser");
+        String browserFromProperty = System.getProperty("chrome");
         setBrowser(browserFromProperty);
     }
 
